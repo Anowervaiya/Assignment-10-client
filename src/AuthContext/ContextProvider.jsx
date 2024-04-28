@@ -1,40 +1,99 @@
 import {
+  GithubAuthProvider,
   createUserWithEmailAndPassword,
   onAuthStateChanged,
   signInWithEmailAndPassword,
+  signInWithPopup,
+  GoogleAuthProvider,
+  updateProfile,
 } from 'firebase/auth';
-import React, { createContext, useEffect, useState } from 'react';
+import { createContext, useEffect, useState } from 'react';
+
+import { signOut } from 'firebase/auth';
+
 import auth from '../firebase/SDKs';
+
 export const ContextAPI = createContext(null);
 
 function ContextProvider({ children }) {
   const [user, setUser] = useState(null);
+  const [data, setData] = useState([]);
+
+  const [loader, setLoader] = useState(true);
+
+  // useEffect(() => {
+  //   fetch('/data.json')
+  //     .then(res => res.json())
+  //     .then(data => {
+  //       setData(data);
+  //     });
+  // }, []);
   const createUser = (email, password) => {
     return createUserWithEmailAndPassword(auth, email, password);
   };
 
-  const LogInUser = (email, password) => {
+  const SingInUser = (email, password) => {
     return signInWithEmailAndPassword(auth, email, password);
+  };
+  const signInOut = () => {
+    return signOut(auth);
+  };
+
+  const updatedProfile = (name, photo) => {
+    return updateProfile(
+      auth.currentUser,
+
+      {
+        displayName: name,
+        photoURL: photo,
+      }
+    );
   };
 
   useEffect(() => {
-    const aadsf = onAuthStateChanged(auth, user => {
-      if (user) {
-        setUser(user);
-      }
+    const unsubscrive = onAuthStateChanged(auth, user => {
+      setUser(user);
+      setLoader(false);
     });
+
     return () => {
-      aadsf();
+      unsubscrive();
     };
   }, []);
 
-  const objInfo = {
-    createUser,
-    LogInUser,
-    user
+  const GoogleLogin = () => {
+    const provider = new GoogleAuthProvider();
+    signInWithPopup(auth, provider)
+      .then(result => {
+        const user = result.user;
+        console.log(user);
+      })
+      .catch(error => {
+        console.log('google mama tho ase na');
+      });
+
+    signInWithPopup(auth, provider);
   };
 
-  return <ContextAPI.Provider value={objInfo}>{children}</ContextAPI.Provider>;
+  const GitHubLogin = () => {
+    const provider = new GithubAuthProvider();
+    signInWithPopup(auth, provider);
+  };
+  const ContextData = {
+    data,
+    user,
+    createUser,
+    GoogleLogin,
+    signInOut,
+    SingInUser,
+    updatedProfile,
+    GitHubLogin,
+    loader,
+  };
+
+  return (
+    <ContextAPI.Provider value={ContextData}>{children}</ContextAPI.Provider>
+  );
 }
 
 export default ContextProvider;

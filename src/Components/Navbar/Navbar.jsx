@@ -97,10 +97,12 @@ export function NavbarWithMegaMenu() {
         </div>
         <div className="hidden gap-2 lg:flex">
           <Button variant="text" size="sm" color="blue-gray">
-            Log In
+            <Link to={'/logIn'}> Log In</Link>
           </Button>
           <NavLink
-            className={'w-full text-white bg-black py-1 rounded-lg text-center '}
+            className={
+              'w-full text-white bg-black py-1 rounded-lg text-center '
+            }
             to={'/signUp'}
           >
             Sign Up
@@ -122,9 +124,12 @@ export function NavbarWithMegaMenu() {
       <Collapse open={openNav}>
         <NavList />
         <div className="flex w-full flex-nowrap items-center gap-2 lg:hidden">
-          <Button variant="outlined" size="sm" color="blue-gray" fullWidth>
-            Log In
-          </Button>{' '}
+          <NavLink
+            className={'w-full bg-black p-1 rounded-lg text-center '}
+            to={'/logIn'}
+          >
+            Sign In
+          </NavLink>
           <NavLink
             className={'w-full bg-black p-1 rounded-lg text-center '}
             to={'/signUp'}

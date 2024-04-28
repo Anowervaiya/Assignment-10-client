@@ -1,60 +1,95 @@
-import {
-  Card,
-  Input,
-  Checkbox,
-  Button,
-  Typography,
-} from '@material-tailwind/react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { useContext } from 'react';
+import { Link, Navigate, useLocation, useNavigate } from 'react-router-dom';
 
-export function LogIn() {
+import { FaEye } from 'react-icons/fa';
+import { ContextAPI } from '../AuthContext/ContextProvider';
+import { toast } from 'react-toastify';
+
+function SignIn() {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
+  const { createUser, SingInUser, GitHubLogin, user, GoogleLogin } =
+    useContext(ContextAPI);
+
+  const location = useLocation();
+  const navigate = useNavigate();
+  const [eye, setEye] = useState(false);
+
+  // const [eye, setEye] = useState(false);
+
+  const handleForm = data => {
+    const email = data.email;
+    const password = data.password;
+
+    // create user
+    SingInUser(email, password)
+      .then(result => {
+        console.log(result);
+
+        navigate(location.state ? location.state : '/');
+        
+      })
+      .catch(error => {
+        console.log('sing in hocce na');
+        toast.warning('your password or email is not valid')
+      });
+
+    // google login
+  };
+
+  // if (user) return <Navigate to={'/'}></Navigate>;
   return (
-    <div className="flex justify-center items-center min-h-screen">
-      <Card color="transparent" shadow={false}>
-        <Typography variant="h4" color="blue-gray">
-          Sign In
-        </Typography>
-        <Typography color="gray" className="mt-1 font-normal">
-          Nice to meet you! Enter your details to Sign In.
-        </Typography>
-        <form className="mt-8 mb-2 w-80 max-w-screen-lg sm:w-96">
-          <div className="mb-1 flex flex-col gap-6">
-            <Typography variant="h6" color="blue-gray" className="-mb-3">
-              Your Email
-            </Typography>
-            <Input
-              size="lg"
-              placeholder="name@mail.com"
-              className=" !border-t-blue-gray-200 focus:!border-t-gray-900"
-              labelProps={{
-                className: 'before:content-none after:content-none',
-              }}
-            />
-            <Typography variant="h6" color="blue-gray" className="-mb-3">
-              Password
-            </Typography>
-            <Input
-              type="password"
-              size="lg"
-              placeholder="********"
-              className=" !border-t-blue-gray-200 focus:!border-t-gray-900"
-              labelProps={{
-                className: 'before:content-none after:content-none',
-              }}
-            />
+    <div>
+      <form onSubmit={handleSubmit(handleForm)}>
+        Email:
+        <input
+          type="email"
+          {...register('email')}
+          className="border p-3 rounded-lg w-full "
+        />
+        Password:
+        <div className="relative">
+          <input
+            type={eye ? 'text' : 'password'}
+            {...register('password', { required: true })}
+            className="border p-3 rounded-lg w-full "
+          />
+          <div
+            onClick={() => {
+              setEye(!eye);
+            }}
+            className="absolute top-4 right-5"
+          >
+            <FaEye />
           </div>
-
-          <Button className="mt-6" fullWidth>
-            sign In
-          </Button>
-          <Typography color="gray" className="mt-4 text-center font-normal">
-            Don't have an account? Please{' '}
-            <Link to={'/signUp'} className="font-medium text-gray-900">
-              Sign Up
-            </Link>
-          </Typography>
-        </form>
-      </Card>
+        </div>
+        <input
+          type="submit"
+          value={'Sign In'}
+          className="  cursor-pointer btn mt-8 bg-green-500 text-white"
+        />
+      </form>
+      have not any account? please{' '}
+      <Link className="font-bold" to={'/signUp'}>
+        Sign Up
+      </Link>
+      <div className="mt-8 ">
+        <button className="btn " onClick={() => GoogleLogin()}>
+          Google
+        </button>
+        <button className="mx-8 btn " onClick={GitHubLogin}>
+          {' '}
+          GitHub{' '}
+        </button>
+      </div>
     </div>
   );
 }
+
+export default SignIn;

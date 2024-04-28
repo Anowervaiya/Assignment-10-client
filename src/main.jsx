@@ -6,12 +6,16 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import Root from './Layout/Root';
 import Home from './Pages/Home';
 
-import { LogIn } from './Pages/LogIn';
-import AboutUs from './Pages/AboutUs';
-import ContactUs from './Pages/ContactUs';
-import { SimpleRegistrationForm } from './Pages/SimpleRegistrationForm';
 import Error from './Pages/Error';
 import ContextProvider from './AuthContext/ContextProvider';
+import SimpleRegistrationForm from './Pages/SimpleRegistrationForm';
+
+
+  import { ToastContainer, toast } from 'react-toastify';
+  import 'react-toastify/dist/ReactToastify.css';
+import SignIn from './Pages/LogIn';
+import AddTourist_Spot from './Pages/AddTour';
+import Details from './Components/Details';
 
 
 const router = createBrowserRouter([
@@ -30,23 +34,26 @@ const router = createBrowserRouter([
       },
       {
         path: '/logIn',
-        element: <LogIn></LogIn>,
+        element: <SignIn></SignIn>,
       },
       {
-        path: '/aboutUs',
-        element: <AboutUs></AboutUs>,
+        path: '/addTourist',
+        element: <AddTourist_Spot></AddTourist_Spot>,
       },
       {
-        path: '/contact',
-        element: <ContactUs></ContactUs>,
+        path: '/details/:id',
+        element: <Details></Details>,
+        loader: ({params}) => fetch(`http://localhost:3000/tour/${params.id}`),
       },
     ],
   },
 ]);
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <ContextProvider>
-      <RouterProvider router={router} />
-    </ContextProvider>
+    <ToastContainer/>
+      <ContextProvider>
+        <RouterProvider router={router} />
+      </ContextProvider>
+  
   </React.StrictMode>
 );
