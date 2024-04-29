@@ -29,16 +29,19 @@ User_Name,
   // const [first, second, third] = facilities;
 
   return (
-    <Card shadow={false} className=" my-10 min-h-screen flex flex-col container mx-auto  md:flex-row gap-8 p-4">
+    <Card
+      shadow={false}
+      className=" my-10 min-h-screen flex flex-col container mx-auto  md:flex-row gap-8 p-4"
+    >
       <CardHeader
-       shadow={false}
+        shadow={false}
         floated={false}
         className="m-0 md:w-2/5 shrink-0 md:rounded-r-none"
       >
         <img
           src={photo}
           alt="card-image"
-          className=" w-full h-[444px] rounded-lg rounded-r-none "
+          className=" w-full min-h-[500px] rounded-lg rounded-r-none "
         />
       </CardHeader>
       <div className="text-xl font-semibold space-y-4">
@@ -53,6 +56,10 @@ User_Name,
         <hr />
         <Typography variant="h6" color="gray">
           Country : {country_Name}
+        </Typography>
+        <hr />
+        <Typography variant="h6" color="gray">
+          Location : {location}
         </Typography>
         <hr />
         <Typography variant="h6" color="gray">
@@ -76,7 +83,6 @@ User_Name,
         <Typography variant="h6" color="gray">
           Total Visitors : {TotalVisitors}
         </Typography>
-      
       </div>
     </Card>
   );

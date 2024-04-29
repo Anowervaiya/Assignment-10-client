@@ -16,6 +16,8 @@ function TouristSpot() {
       });
   }, []);
 
+  console.log(data)
+
   return (
     <div className="lg:my-32 my-16 container mx-auto">
       <div className="text-center">

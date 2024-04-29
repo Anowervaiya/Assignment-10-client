@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import SingleTour from '../Components/SingleTour';
+import { Link } from 'react-router-dom';
 
 function AllToristSpot() {
   const [data, setData] = useState([]);
@@ -17,7 +17,7 @@ function AllToristSpot() {
       });
   }, []);
 
-
+ 
     const handleSortBycost = event => {
       const selectedSortBy = event.target.value;
 
@@ -33,7 +33,7 @@ function AllToristSpot() {
   return (
     <>
       <div className="text-2xl font-bold text-center p-4 bg-gray-200 container mx-auto my-8 rounded-lg">
-        Listed Books
+       All Tourist Spot
       </div>
 
       <div className="text-center container mx-auto">
@@ -63,8 +63,46 @@ function AllToristSpot() {
             outdoor activities for an unforgettable experience.
           </p>
         </div>
-        <div className="px-4 md:px-8 lg:px-16 grid grid-cols-2 gap-4 md:gap-6 lg:gap-10 md:grid-cols-3 lg:grid-cols-4 ">
-          {data && data.map(item => <SingleTour item={item}></SingleTour>)}
+        <div className="px-4 md:px-8 lg:px-16 grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 lg:gap-10  lg:grid-cols-3 ">
+          {
+            data.map(item => {
+              return (
+                <div className="  rounded-2xl  hover:shadow-[-5px_10px_30px_rgba(0,0,0,0.1),5px_-10px_30px_rgba(0,0,0,0.1)]  transition ease-linear duration-200 delay-75   hover:-translate-y-1 shadow-[0_2px_5px_gray]">
+                  <img
+                    className="w-full h-[200px] rounded-2xl border-b-2"
+                    src={item.photo}
+                  />
+                  <div className="p-3 ">
+                    <h2 className="font-semibold text-center ">
+                      Spot Name : {item.name}
+                    </h2>
+                    <hr className="my-2" />
+                    <h2 className=" text-center ">
+                      Average Cost : {item.average_cost}
+                    </h2>
+                    <hr className="my-2" />
+                    <h2 className=" text-center ">
+                      Total Visitors : {item.TotalVisitors}
+                    </h2>
+                    <hr className="my-2" />
+                    <h2 className="text-center ">
+                      {' '}
+                      Travel Time : {item.travel_time}
+                    </h2>
+                    <hr className="my-2" />
+                    <h2 className=" text-center ">
+                      Seasonality : {item.seasonality}
+                    </h2>
+                    <hr className="my-2" />
+                    <p className="bg-gradient-to-r from-blue-500  to-cyan-300 text-transparent bg-clip-text  text-center text-sm lg:text-md font-bold my-2">
+                      <Link to={`/details/${item._id}`}> View Details</Link>
+                    </p>
+                  </div>
+                </div>
+              );
+            })
+         }
+          
         </div>
       </div>
     </>

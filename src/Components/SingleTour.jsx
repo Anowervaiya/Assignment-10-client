@@ -3,7 +3,7 @@ import React from 'react'
 import { Link } from 'react-router-dom';
 function SingleTour({item}) {
 
-  const { photo, name, _id } = item;
+  const { photo, name, _id  } = item;
   return (
     <>
       <div className="  rounded-2xl  hover:shadow-[-5px_10px_30px_rgba(0,0,0,0.1),5px_-10px_30px_rgba(0,0,0,0.1)]  transition ease-linear duration-200 delay-75   hover:-translate-y-1 shadow-[0_2px_5px_gray]">

@@ -22,6 +22,7 @@ import PrivateRout from './Components/PrivateRout';
 import ContactUs from './Pages/ContactUs';
 import AboutUs from './Pages/AboutUs';
 import Update from './Components/Update';
+import SpecificCountry from './Components/SpecificCountry';
 
 
 const router = createBrowserRouter([
@@ -82,8 +83,14 @@ const router = createBrowserRouter([
       },
       {
         path: '/updateTour/:id',
-        element:<Update></Update>,
-        loader: ({params}) => fetch(`http://localhost:3000/tour/${params.id}`),
+        element: <Update></Update>,
+        loader: ({ params }) =>
+          fetch(`http://localhost:3000/tour/${params.id}`),
+      },
+      {
+        path: '/country/:name',
+        element: <SpecificCountry></SpecificCountry>,
+        loader: ({params}) => fetch(`http://localhost:3000/country/${params.name}`),
       },
     ],
   },

@@ -10,13 +10,12 @@ function Footer() {
               Get In Touch{' '}
             </h1>
             <p className="text-gray-400 font-semibold my-6">
-              A real estate agency website showcases properties for sale or rent
-              with detailed listings and search functionality, connecting buyers
-              and sellers efficiently online.
+              A real Tourism agency website showcases properties for tour
+              with detailed listings and search functionality
             </p>
             <div className="flex gap-4 items-center lg:justify-start md:justify-start justify-center">
               <i className="fa-solid fa-envelope text-2xl text-gray-400"></i>
-              <p className="text-gray-400">residentor@support.com</p>
+              <p className="text-gray-400">lardixT@support.com</p>
             </div>
             <div className="flex gap-4 items-center lg:justify-start md:justify-start justify-center ">
               <i className="fa-solid fa-phone text-2xl text-gray-400"></i>
