@@ -25,6 +25,15 @@ function MyTourSpot() {
       });
   }, []);
 
+
+  const deleteTour = (id) => {
+    axios.delete(`http://localhost:3000/tour/${id}`)
+      .then(res => {
+        const remaining = data.filter(item => item._id !== id)
+        setData(remaining);
+    })
+  }
+
   if (!data) return (
     <div className="flex justify-center items-center min-h-screen font-bold text-3xl container mx-auto">
       <div>
@@ -53,7 +62,14 @@ function MyTourSpot() {
         </p>
       </div>
       <div>
-        {data && data.map((item,index) => <SingleMyTour item={item} key={index}></SingleMyTour>)}
+        {data &&
+          data.map((item, index) => (
+            <SingleMyTour
+              item={item}
+              deleteTour={deleteTour}
+              key={index}
+            ></SingleMyTour>
+          ))}
       </div>
     </div>
   );

@@ -21,6 +21,7 @@ import MyTourSpot from './Pages/Mytour';
 import PrivateRout from './Components/PrivateRout';
 import ContactUs from './Pages/ContactUs';
 import AboutUs from './Pages/AboutUs';
+import Update from './Components/Update';
 
 
 const router = createBrowserRouter([
@@ -73,12 +74,17 @@ const router = createBrowserRouter([
       },
       {
         path: '/contact',
-        element:<ContactUs></ContactUs>
+        element: <ContactUs></ContactUs>,
       },
       {
         path: '/about',
-        element:<AboutUs></AboutUs>
-      }
+        element: <AboutUs></AboutUs>,
+      },
+      {
+        path: '/updateTour/:id',
+        element:<Update></Update>,
+        loader: ({params}) => fetch(`http://localhost:3000/tour/${params.id}`),
+      },
     ],
   },
 ]);
