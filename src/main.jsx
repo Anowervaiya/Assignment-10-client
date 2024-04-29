@@ -16,6 +16,9 @@ import SimpleRegistrationForm from './Pages/SimpleRegistrationForm';
 import SignIn from './Pages/LogIn';
 import AddTourist_Spot from './Pages/AddTour';
 import Details from './Components/Details';
+import AllToristSpot from './Pages/AllTourist';
+import MyTourSpot from './Pages/Mytour';
+import PrivateRout from './Components/PrivateRout';
 
 
 const router = createBrowserRouter([
@@ -38,12 +41,33 @@ const router = createBrowserRouter([
       },
       {
         path: '/addTourist',
-        element: <AddTourist_Spot></AddTourist_Spot>,
+        element: (
+          <PrivateRout>
+            <AddTourist_Spot></AddTourist_Spot>
+          </PrivateRout>
+        ),
       },
       {
         path: '/details/:id',
-        element: <Details></Details>,
-        loader: ({params}) => fetch(`http://localhost:3000/tour/${params.id}`),
+        element: (
+          <PrivateRout>
+            <Details></Details>
+          </PrivateRout>
+        ),
+        loader: ({ params }) =>
+          fetch(`http://localhost:3000/tour/${params.id}`),
+      },
+      {
+        path: '/alltour',
+        element: <AllToristSpot></AllToristSpot>,
+      },
+      {
+        path: '/mytour',
+        element: (
+          <PrivateRout>
+            <MyTourSpot></MyTourSpot>
+          </PrivateRout>
+        ),
       },
     ],
   },

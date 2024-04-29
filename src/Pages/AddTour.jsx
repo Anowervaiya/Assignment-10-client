@@ -1,76 +1,76 @@
 import axios from 'axios';
+import { useContext } from 'react';
 import Swal from 'sweetalert2';
 
 const AddTourist_Spot = () => {
-  const handleAddTourist_Spot = event => {
-    console.log('aice');
-    event.preventDefault();
-
-    const form = event.target;
-
-    const name = form.TouristName.value;
-    const TotalVisitors = form.TotalVisitors.value;
-    const description = form.description.value;
-   
-
-    const photo = form.Photo.value;
-    const average_cost = form.average_cost.value;
-    const country_Name = form.country_Name.value;
-    const seasonality = form.seasonality.value;
-    const travel_time = form.travel_time.value;
-    const User_Name = form.User_Name.value;
-    const Email = form.Email.value;
-
  
-    // **
-    // https://i.ibb.co/1TKJy35/download.jpg
-    // https://i.ibb.co/dB6VtJ5/download.jpg
-    // https://i.ibb.co/WFGhPm2/download.jpg
-    // https://i.ibb.co/b7Mp63G/download.jpg
-    // *
+ const handleAddTourist_Spot = event => {
+   console.log('aice');
+   event.preventDefault();
 
-    const newTourist_Spot = {
-      name,
-      TotalVisitors,
-      Email,
-      average_cost,
-      User_Name,
-      country_Name,
-      seasonality,
-      travel_time,
-      description,
-    
-      photo,
-    };
+   const form = event.target;
 
-    console.log(newTourist_Spot);
+   const name = form.TouristName.value;
+   const TotalVisitors = form.TotalVisitors.value;
+   const description = form.description.value;
 
-    // send data to the server
-    fetch('http://localhost:3000/tour', {
-      method: 'POST',
-      headers: {
-        'content-type': 'application/json',
-      },
-      body: JSON.stringify(newTourist_Spot),
-    })
-      .then(res => res.json())
-      .then(data => {
-        console.log(data);
-        if (data.insertedId) {
-          Swal.fire({
-            title: 'Success!',
-            text: 'Tourist_Spot Added Successfully',
-            icon: 'success',
-            confirmButtonText: 'Cool',
-          });
-          form.reset();
-        }
-      });
+   const photo = form.Photo.value;
+   const average_cost = form.average_cost.value;
+   const country_Name = form.country_Name.value;
+   const seasonality = form.seasonality.value;
+   const travel_time = form.travel_time.value;
+   const User_Name = form.User_Name.value;
+   const Email = form.Email.value;
+   const location = form.location.value;
 
-   
+   // **
+   // https://i.ibb.co/1TKJy35/download.jpg
+   // https://i.ibb.co/dB6VtJ5/download.jpg
+   // https://i.ibb.co/WFGhPm2/download.jpg
+   // https://i.ibb.co/b7Mp63G/download.jpg
+   // *
+
+   const newTourist_Spot = {
+     name,
+     TotalVisitors,
+     Email,
+     average_cost,
+     User_Name,
+     country_Name,
+     seasonality,
+     travel_time,
+     description,
+     location,
+     photo,
+   };
 
 
-  };
+   // send data to the server
+
+   fetch('http://localhost:3000/tour', {
+     method: 'POST',
+     headers: {
+       'content-type': 'application/json',
+     },
+     body: JSON.stringify(newTourist_Spot),
+   })
+     .then(res => res.json())
+     .then(data => {
+       console.log(data);
+       if (data.insertedId) {
+         Swal.fire({
+           title: 'Success!',
+           text: 'Tourist_Spot Added Successfully',
+           icon: 'success',
+           confirmButtonText: 'Cool',
+         });
+         form.reset();
+       }
+     })
+     .catch(err => {
+     alert('oopps!')
+   })
+ };
 
   return (
     <div className="bg-[#F4F3F0] p-24">

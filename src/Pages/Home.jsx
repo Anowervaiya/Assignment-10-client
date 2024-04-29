@@ -1,11 +1,13 @@
 import React from 'react';
-import { NavbarWithMegaMenu } from '../Components/Navbar/Navbar';
+
 import TouristSpot from '../Components/TouristSpot';
+import Banner from '../Components/Banner/Banner';
 
 function Home() {
   return (
     <div>
-      <NavbarWithMegaMenu></NavbarWithMegaMenu>
+    
+      <Banner></Banner>
       <TouristSpot></TouristSpot>
     </div>
   );

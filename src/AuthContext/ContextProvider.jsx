@@ -21,6 +21,8 @@ function ContextProvider({ children }) {
 
   const [loader, setLoader] = useState(true);
 
+  const [email,setEmail]=useState(null)
+
   // useEffect(() => {
   //   fetch('/data.json')
   //     .then(res => res.json())
@@ -40,6 +42,7 @@ function ContextProvider({ children }) {
   };
 
   const updatedProfile = (name, photo) => {
+    console.log(name, photo);
     return updateProfile(
       auth.currentUser,
 
@@ -79,6 +82,11 @@ function ContextProvider({ children }) {
     const provider = new GithubAuthProvider();
     signInWithPopup(auth, provider);
   };
+
+ 
+ 
+  
+
   const ContextData = {
     data,
     user,
@@ -89,6 +97,7 @@ function ContextProvider({ children }) {
     updatedProfile,
     GitHubLogin,
     loader,
+    
   };
 
   return (

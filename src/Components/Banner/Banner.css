@@ -1,0 +1,21 @@
+.slide{
+  color:rgb(44,44,229);
+  height: 90vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.slide1{
+  background-image: url('https://i.ibb.co/7X21syd/joshua-earle-87-Jy-Mb9-Zf-U-unsplash.jpg');
+}
+.slide2{
+  background-image: url('https://i.ibb.co/cyNsG2G/ammie-ngo-vcu-OZBxx-Rk-unsplash.jpg');
+}
+
+.slide3{
+  background-image: url('https://i.ibb.co/dDJ7R0Y/nadine-marfurt-Ypi-Ufsj-Xs-Zc-unsplash.jpg');
+}

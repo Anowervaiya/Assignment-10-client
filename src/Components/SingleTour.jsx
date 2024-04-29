@@ -2,7 +2,7 @@ import React from 'react'
 
 import { Link } from 'react-router-dom';
 function SingleTour({item}) {
- console.log(item);
+
   const { photo, name, _id } = item;
   return (
     <>

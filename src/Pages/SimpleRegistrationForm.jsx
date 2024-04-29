@@ -1,7 +1,7 @@
 import { useForm } from 'react-hook-form';
 
 import { useContext, useState } from 'react';
-import { Link, Navigate } from 'react-router-dom';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { FaEye } from 'react-icons/fa';
 import { ContextAPI } from '../AuthContext/ContextProvider';
@@ -13,6 +13,8 @@ const SimpleRegistrationForm = () => {
     formState: { errors },
   } = useForm();
 
+  const navigate = useNavigate()
+
   const { createUser, user, updatedProfile } = useContext(ContextAPI);
 
   const [passwordError, setPasswordError] = useState(null); // State to manage password error
@@ -22,7 +24,7 @@ const SimpleRegistrationForm = () => {
     const password = data.password;
     const Name = data.name;
     const photo = data.photoURL;
-    // console.log(data, photo, Name);
+    console.log(data, photo, Name);
 
     const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z]).{6,}$/;
     if (!passwordRegex.test(password)) {
@@ -34,10 +36,19 @@ const SimpleRegistrationForm = () => {
 
     createUser(email, password)
       .then(userCredential => {
-        toast.success('user Created Successfully');
+       
         updatedProfile(Name, photo)
-          .then(res => console.log('photo update hoice ', user))
+          .then(res => {
+            toast.success('user Created Successfully');
+            navigate('/');
+          } )
           .catch(err => console.log('photo ase nai'));
+
+        
+
+
+        
+        
       })
       .catch(error => {
         console.log('user was created once ');
