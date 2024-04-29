@@ -18,11 +18,13 @@ function Root() {
  }
   return (
     <div>
-       <Navbar></Navbar>
-      <Outlet></Outlet>
+      <Navbar></Navbar>
+      <div className='min-h-[100vh]'>
+        <Outlet></Outlet>
+      </div>
       <Footer></Footer>
     </div>
-  )
+  );
 }
 
 export default Root

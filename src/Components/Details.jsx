@@ -11,11 +11,12 @@ import {
 const Details = props => {
   const [singleData] = useLoaderData();
 
-  console.log(singleData);
 
   const {
     photo,
     name,
+    
+User_Name,
     country_Name,
     description,
     TotalVisitors,
@@ -28,55 +29,55 @@ const Details = props => {
   // const [first, second, third] = facilities;
 
   return (
-    <Card className=" my-10 flex flex-col container mx-auto  md:flex-row gap-8 p-4">
+    <Card shadow={false} className=" my-10 min-h-screen flex flex-col container mx-auto  md:flex-row gap-8 p-4">
       <CardHeader
-        shadow={false}
+       shadow={false}
         floated={false}
         className="m-0 md:w-2/5 shrink-0 md:rounded-r-none"
       >
         <img
           src={photo}
           alt="card-image"
-          className=" w-full h-[450px] rounded-lg rounded-r-none "
+          className=" w-full h-[444px] rounded-lg rounded-r-none "
         />
       </CardHeader>
-      <CardBody className="text-xl font-semibold space-y-4">
+      <div className="text-xl font-semibold space-y-4">
         <Typography variant="h4" color="blue-gray" className="mb-4 ">
-          Estate :{name}
+          Spot Name :{name}
         </Typography>
         <hr />
-
-        <Typography variant="h6" color="gray" className="mb-2">
-          Segment : {name}
+        <Typography variant="h6" color="gray">
+          User Name:
+          {User_Name}
         </Typography>
         <hr />
-        <Typography variant="h6" color="gray" className="mb-2">
+        <Typography variant="h6" color="gray">
+          Country : {country_Name}
+        </Typography>
+        <hr />
+        <Typography variant="h6" color="gray">
           Description:
           {description}
         </Typography>
-        {/* <Typography variant="h6" color="gray" className="mb-2">
-          Facilities: #{first}
-          <span className="mx-8">#{second}</span>
-          <span>#{third}</span>
-        </Typography>
-        <hr /> */}
-
-        <Typography color="black" className="font-normal">
-          <span className=" ">price: {name}</span>
+        <hr />
+        <Typography variant="h6" color="gray">
+          seasonality : {seasonality}
         </Typography>
         <hr />
-        <Typography color="black" className="font-normal space-x-2">
-          Status: {name}
-        </Typography>
-        <Typography color="black" className="font-normal space-x-2">
-          Location: {location}
-        </Typography>
-        <Typography color="black" className="font-normal space-x-2">
-          Area: {name}
-        </Typography>
 
+        <Typography variant="h6" color="gray">
+          Travel Time : {travel_time}
+        </Typography>
         <hr />
-      </CardBody>
+        <Typography variant="h6" color="gray">
+          Average Cost :{average_cost}
+        </Typography>
+        <hr />
+        <Typography variant="h6" color="gray">
+          Total Visitors : {TotalVisitors}
+        </Typography>
+      
+      </div>
     </Card>
   );
 };

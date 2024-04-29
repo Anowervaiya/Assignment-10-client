@@ -30,7 +30,10 @@ function TouristSpot() {
         </p>
       </div>
       <div className="px-4 md:px-8 lg:px-16 grid grid-cols-2 gap-4 md:gap-6 lg:gap-10 md:grid-cols-3 lg:grid-cols-4 ">
-        {data && data.map(item => <SingleTour key={item._id} item={item}></SingleTour>)}
+        {data &&
+          data.map((item, index) => (
+            <SingleTour key={index} item={item}></SingleTour>
+          ))}
       </div>
     </div>
   );

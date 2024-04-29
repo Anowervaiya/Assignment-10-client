@@ -12,6 +12,7 @@ import { createContext, useEffect, useState } from 'react';
 import { signOut } from 'firebase/auth';
 
 import auth from '../firebase/SDKs';
+import { useNavigate } from 'react-router-dom';
 
 export const ContextAPI = createContext(null);
 
@@ -21,7 +22,6 @@ function ContextProvider({ children }) {
 
   const [loader, setLoader] = useState(true);
 
-  const [email,setEmail]=useState(null)
 
   // useEffect(() => {
   //   fetch('/data.json')
@@ -66,21 +66,22 @@ function ContextProvider({ children }) {
 
   const GoogleLogin = () => {
     const provider = new GoogleAuthProvider();
-    signInWithPopup(auth, provider)
-      .then(result => {
-        const user = result.user;
-        console.log(user);
-      })
-      .catch(error => {
-        console.log('google mama tho ase na');
-      });
+   return  signInWithPopup(auth, provider)
+     
 
-    signInWithPopup(auth, provider);
+    // signInWithPopup(auth, provider)
+    //   .then(result => {
+    //     const user = result.user;
+    //     console.log(user);
+    //   })
+    //   .catch(error => {
+    //     console.log('google mama tho ase na');
+    //   });
   };
 
   const GitHubLogin = () => {
     const provider = new GithubAuthProvider();
-    signInWithPopup(auth, provider);
+   return signInWithPopup(auth, provider);
   };
 
  

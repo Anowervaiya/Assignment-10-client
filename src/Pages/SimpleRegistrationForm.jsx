@@ -5,6 +5,7 @@ import { Link, Navigate, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { FaEye } from 'react-icons/fa';
 import { ContextAPI } from '../AuthContext/ContextProvider';
+import { SiTrueup } from 'react-icons/si';
 
 const SimpleRegistrationForm = () => {
   const {
@@ -59,19 +60,19 @@ const SimpleRegistrationForm = () => {
   // if (user) return <Navigate to={'/'}></Navigate>;
 
   return (
-    <>
+    <div className="container mx-auto p-4 min-h-[100vh] flex flex-col justify-center items-center">
       <form onSubmit={handleSubmit(handleForm)}>
-        Name:
+        <label> Name:</label>
         <input
           type="text"
-          {...register('name')}
-          className="border p-3 rounded-lg w-full "
+          {...register('name', {required:true})}
+          className="border my-4 p-3 rounded-lg w-full "
         />
-        Photo URL :
+        <label> Photo URL :</label>
         <input
           type="url"
           {...register('photoURL', { required: true })}
-          className="border p-3 rounded-lg w-full "
+          className="border p-3 my-4 rounded-lg w-full "
         />
         {/* Last Name :
         <input
@@ -82,18 +83,18 @@ const SimpleRegistrationForm = () => {
         {errors.lastName && (
           <p className="text-red-500 font-bold">Last name is required.</p>
         )} */}
-        Email:
+        <label htmlFor="">Email:</label>
         <input
           type="email"
           {...register('email')}
-          className="border p-3 rounded-lg w-full "
+          className="border p-3 my-4 rounded-lg w-full "
         />
-        Password:
-        <div className="relative">
+        <label htmlFor="">Password:</label>
+        <div className="relative my-4">
           <input
             type={eye ? 'text' : 'password'}
             {...register('password', { required: true })}
-            className="border p-3 rounded-lg w-full "
+            className="border p-3  rounded-lg w-full "
           />
           <div
             onClick={() => {
@@ -110,14 +111,16 @@ const SimpleRegistrationForm = () => {
         <input
           type="submit"
           value={'Sign Up'}
-          className="  cursor-pointer btn mt-8 bg-green-500 text-white"
+          className=" w-full mb-4 cursor-pointer btn mt-8 bg-green-500 text-white"
         />
       </form>
-      hava an account? please{' '}
-      <Link to={'/logIn'} className=" font-bold">
-        Sign In{' '}
-      </Link>
-    </>
+      <div>
+        already have an account? please{' '}
+        <Link to={'/logIn'} className=" font-bold">
+          Sign In{' '}
+        </Link>
+      </div>
+    </div>
   );
 };
 

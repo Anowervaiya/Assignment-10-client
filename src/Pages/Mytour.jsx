@@ -1,7 +1,8 @@
 import axios from 'axios';
 import React, { useContext, useEffect, useState } from 'react';
-import SingleTour from '../Components/SingleTour';
 import { ContextAPI } from '../AuthContext/ContextProvider';
+import { Link } from 'react-router-dom';
+import SingleMyTour from '../Components/SingleMyTour';
 
 function MyTourSpot() {
   const [data, setData] = useState([]);
@@ -24,13 +25,23 @@ function MyTourSpot() {
       });
   }, []);
 
-
+  if (!data) return (
+    <div className="flex justify-center items-center min-h-screen font-bold text-3xl container mx-auto">
+      <div>
+        You have no tour plan ... please add a tour plan{' '}
+        <Link className="underline text-green-500" to={'/addTourist'}>
+          {' '}
+          Add a tour{' '}
+        </Link>
+      </div>{' '}
+    </div>
+  );
  
   return (
     <div className="lg:my-32 my-16 container mx-auto">
       <div className="text-center">
         <h1 className="text-2xl lg:text-4xl poppins-semibold">
-          My Torist Spots
+          My Tourist Spots
         </h1>
 
         <p
@@ -41,8 +52,8 @@ function MyTourSpot() {
           outdoor activities for an unforgettable experience.
         </p>
       </div>
-      <div className="px-4 md:px-8 lg:px-16 grid grid-cols-2 gap-4 md:gap-6 lg:gap-10 md:grid-cols-3 lg:grid-cols-4 ">
-        {data && data.map(item => <SingleTour item={item}></SingleTour>)}
+      <div>
+        {data && data.map((item,index) => <SingleMyTour item={item} key={index}></SingleMyTour>)}
       </div>
     </div>
   );

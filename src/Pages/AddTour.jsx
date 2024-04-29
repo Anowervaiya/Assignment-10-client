@@ -73,7 +73,7 @@ const AddTourist_Spot = () => {
  };
 
   return (
-    <div className="bg-[#F4F3F0] p-24">
+    <div className="bg-[#F4F3F0] min-h-screen p-24">
       <h2 className="text-3xl font-extrabold">Add a Tourist_Spot</h2>
       <form onSubmit={handleAddTourist_Spot}>
         {/* form name and totalcost row */}

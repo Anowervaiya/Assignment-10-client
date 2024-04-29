@@ -19,6 +19,8 @@ import Details from './Components/Details';
 import AllToristSpot from './Pages/AllTourist';
 import MyTourSpot from './Pages/Mytour';
 import PrivateRout from './Components/PrivateRout';
+import ContactUs from './Pages/ContactUs';
+import AboutUs from './Pages/AboutUs';
 
 
 const router = createBrowserRouter([
@@ -69,6 +71,14 @@ const router = createBrowserRouter([
           </PrivateRout>
         ),
       },
+      {
+        path: '/contact',
+        element:<ContactUs></ContactUs>
+      },
+      {
+        path: '/about',
+        element:<AboutUs></AboutUs>
+      }
     ],
   },
 ]);

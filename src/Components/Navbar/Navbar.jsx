@@ -19,7 +19,6 @@ const {user,loader,signInOut}=useContext(ContextAPI)
       .catch(err => console.log('sign out error'));
   };
   
-  console.log(user);
   // if(!user) return <Navigate to={'/'}></Navigate>
   return (
     <div className="navbar ">

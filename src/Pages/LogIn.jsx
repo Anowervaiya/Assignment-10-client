@@ -14,14 +14,33 @@ function SignIn() {
     formState: { errors },
   } = useForm();
 
-  const { createUser, SingInUser, GitHubLogin, user, GoogleLogin } =
-    useContext(ContextAPI);
+  const { SingInUser, GitHubLogin, GoogleLogin } = useContext(ContextAPI);
 
   const location = useLocation();
   const navigate = useNavigate();
   const [eye, setEye] = useState(false);
 
   // const [eye, setEye] = useState(false);
+
+  const google = () => {
+    GoogleLogin()
+      .then(result => {
+        navigate(location.state ? location.state : '/');
+      })
+      .catch(error => {
+        console.log('google mama tho ase na');
+      });
+  };
+
+  const Github = () => {
+    GitHubLogin()
+      .then(result => {
+        navigate(location.state ? location.state : '/');
+      })
+      .catch(error => {
+        console.log('github mama tho ase na');
+      });
+  };
 
   const handleForm = data => {
     const email = data.email;
@@ -33,11 +52,10 @@ function SignIn() {
         console.log(result);
 
         navigate(location.state ? location.state : '/');
-        
       })
       .catch(error => {
         console.log('sing in hocce na');
-        toast.warning('your password or email is not valid')
+        toast.warning('your password or email is not valid');
       });
 
     // google login
@@ -45,16 +63,16 @@ function SignIn() {
 
   // if (user) return <Navigate to={'/'}></Navigate>;
   return (
-    <div>
+    <div className="flex min-h-screen container mx-auto p-4 flex-col justify-center items-center">
       <form onSubmit={handleSubmit(handleForm)}>
-        Email:
+        <label> Email:</label>
         <input
           type="email"
           {...register('email')}
-          className="border p-3 rounded-lg w-full "
+          className="border p-3 my-5 rounded-lg w-full "
         />
-        Password:
-        <div className="relative">
+        <label>Password:</label>
+        <div className="relative mt-4 ">
           <input
             type={eye ? 'text' : 'password'}
             {...register('password', { required: true })}
@@ -72,18 +90,20 @@ function SignIn() {
         <input
           type="submit"
           value={'Sign In'}
-          className="  cursor-pointer btn mt-8 bg-green-500 text-white"
+          className=" w-full  cursor-pointer btn my-8 bg-green-500 text-white"
         />
       </form>
-      have not any account? please{' '}
-      <Link className="font-bold" to={'/signUp'}>
-        Sign Up
-      </Link>
+      <div>
+        have not any account? please{' '}
+        <Link className="font-bold" to={'/signUp'}>
+          Sign Up
+        </Link>
+      </div>
       <div className="mt-8 ">
-        <button className="btn " onClick={() => GoogleLogin()}>
+        <button className="btn " onClick={() => google()}>
           Google
         </button>
-        <button className="mx-8 btn " onClick={GitHubLogin}>
+        <button className="mx-8 btn " onClick={Github}>
           {' '}
           GitHub{' '}
         </button>
