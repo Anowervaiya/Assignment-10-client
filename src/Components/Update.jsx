@@ -3,26 +3,24 @@ import { useLoaderData } from 'react-router-dom';
 import Swal from 'sweetalert2';
 
 const Update = () => {
-  
-const [data] = useLoaderData()
+  const [data] = useLoaderData();
 
-  
-  const { name,
+  const {
+    name,
     _id,
-TotalVisitors,
-description,
-photo,
-average_cost,
-country_Name,
-seasonality,
-travel_time,
-User_Name,
-Email,
-location } = data;
-
+    TotalVisitors,
+    description,
+    photo,
+    average_cost,
+    country_Name,
+    seasonality,
+    travel_time,
+    User_Name,
+    Email,
+    location,
+  } = data;
 
   const handleUpdate = event => {
-  
     event.preventDefault();
 
     const form = event.target;
@@ -63,7 +61,7 @@ location } = data;
 
     // send data to the server
 
-    fetch(`http://localhost:3000/tour/${_id}`, {
+    fetch(`https://tourism-a-10-server.vercel.app/tour/${_id}`, {
       method: 'PUT',
       headers: {
         'content-type': 'application/json',

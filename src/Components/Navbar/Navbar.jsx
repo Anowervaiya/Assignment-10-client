@@ -76,6 +76,7 @@ const {user,loader,signInOut}=useContext(ContextAPI)
         </ul>
       </div>
       <div className="navbar-end">
+       
         <div
           tabIndex={0}
           role="button"

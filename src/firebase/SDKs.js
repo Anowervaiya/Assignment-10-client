@@ -2,8 +2,10 @@
 import { initializeApp } from 'firebase/app';
 import { getAuth } from 'firebase/auth';
 
+console.log(import.meta.env.VITE_API);
+
 const firebaseConfig = {
-  apiKey: 'AIzaSyDvGwLWQqFhJSROKhcm9VHF_OxOmzP6w0E',
+  apiKey: "AIzaSyDvGwLWQqFhJSROKhcm9VHF_OxOmzP6w0E",
   authDomain: 'tourism-a-10.firebaseapp.com',
   projectId: 'tourism-a-10',
   storageBucket: 'tourism-a-10.appspot.com',

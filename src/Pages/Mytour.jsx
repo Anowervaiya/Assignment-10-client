@@ -12,7 +12,7 @@ function MyTourSpot() {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:3000/mytour/${Email}`)
+      .get(`https://tourism-a-10-server.vercel.app/mytour/${Email}`)
       .then(res => {
         setData(res.data);
       })
@@ -32,18 +32,18 @@ function MyTourSpot() {
       confirmButtonText: 'Yes, delete it!',
     }).then(result => {
       if (result.isConfirmed) {
-        axios.delete(`http://localhost:3000/tour/${id}`)
+        axios
+          .delete(`https://tourism-a-10-server.vercel.app/tour/${id}`)
           .then(res => {
             const remaining = data.filter(item => item._id !== id);
-            
+
             setData(remaining);
             Swal.fire({
               title: 'Deleted!',
               text: 'Your file has been deleted.',
               icon: 'success',
             });
-        });
-        
+          });
       }
     });
   };

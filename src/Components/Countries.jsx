@@ -1,23 +1,24 @@
-import axios from 'axios'
-import React, { useEffect, useState } from 'react'
-import SingleTour from './SingleTour'
-import { Link } from 'react-router-dom'
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
+import SingleTour from './SingleTour';
+import { Link } from 'react-router-dom';
 
 function Countries() {
-  const [country,setCountry]= useState(null)
+  const [country, setCountry] = useState(null);
   useEffect(() => {
     axios
-      .get('http://localhost:3000/country')
+      .get('https://tourism-a-10-server.vercel.app/country')
       .then(res => setCountry(res.data));
- },[])
-  
+  }, []);
+
   console.log(country);
-  if (!country) return (
-    <div className="flex justify-center items-center min-h-screen">
-      <span className="loading loading-bars loading-lg"></span>
-    </div>
-  );
-  
+  if (!country)
+    return (
+      <div className="flex justify-center items-center min-h-screen">
+        <span className="loading loading-bars loading-lg"></span>
+      </div>
+    );
+
   return (
     <div className="lg:my-32 my-16 container mx-auto">
       <div className="text-center">
@@ -54,4 +55,4 @@ function Countries() {
   );
 }
 
-export default Countries
+export default Countries;

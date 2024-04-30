@@ -7,7 +7,9 @@ function TouristSpot() {
 
   useEffect(() => {
     axios
-      .get('http://localhost:3000/tour')
+      .get(
+        'https://tourism-a-10-server.vercel.app/tour'
+      )
       .then(res => {
         setData(res.data);
       })
@@ -16,7 +18,7 @@ function TouristSpot() {
       });
   }, []);
 
-  console.log(data)
+  console.log(data);
 
   return (
     <div className="lg:my-32 my-16 container mx-auto">
